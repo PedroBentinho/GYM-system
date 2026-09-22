@@ -11,25 +11,27 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Positive;
 
-public class Treino {
     @Entity 
 
     @Table(name = "treinos")
-
     public class treinos {
+
         @Id 
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private long id;
+
 @Column( nullable = false, length =100 )
-private double treinos;
+private String Exercicio;
 
-@Positive 
 @Column( nullable = false )
-private 
+private Integer Series;
 
+@Column(nullable = false)
+private Integer repeticoes;
 
+@Column(length = 50)
+private String grupoMuscular 
 
-    }
-
-
-}
+@Column(nullable = false)
+private boolean feitohoje = false;
+public treinos() }
