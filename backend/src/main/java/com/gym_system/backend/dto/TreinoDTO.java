@@ -15,33 +15,48 @@ public class TreinoDTO {
             accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
 
-    // Nome obrigatório do treino.
-    @NotBlank(message = "O nome do treino é obrigatório")
+    // Nome do exercício, obrigatório.
+    @NotBlank(message = "O exercício é obrigatório")
     @Size(min = 2, max = 100,
-          message = "O nome deve ter entre 2 e 100 caracteres")
-    @Schema(description = "Nome do treino",
-            example = "Treino de Peito")
-    private String nome;
+          message = "O exercício deve ter entre 2 e 100 caracteres")
+    @Schema(description = "Nome do exercício",
+            example = "Supino reto")
+    private String exercicio;
 
-    // Descrição do treino.
-    @NotBlank(message = "A descrição do treino é obrigatória")
-    @Schema(description = "Descrição do treino",
-            example = "Treino focado em peito e tríceps")
-    private String descricao;
+    // Quantidade de séries, deve ser maior que zero.
+    @Positive(message = "As séries devem ser maiores que zero")
+    @Schema(description = "Quantidade de séries",
+            example = "4")
+    private Integer series;
 
-    // Duração do treino em minutos, deve ser maior que zero.
-    @Positive(message = "A duração deve ser maior que zero")
-    @Schema(description = "Duração do treino em minutos",
-            example = "60")
-    private Integer duracaoMinutos;
+    // Quantidade de repetições, deve ser maior que zero.
+    @Positive(message = "As repetições devem ser maiores que zero")
+    @Schema(description = "Quantidade de repetições",
+            example = "12")
+    private Integer repeticoes;
+
+    // Grupo muscular trabalhado.
+    @Schema(description = "Grupo muscular",
+            example = "Peito")
+    private String grupoMuscular;
+
+    // Indica se foi feito hoje.
+    private boolean feitohoje;
+
+    // Construtor vazio para o Spring ler o JSON recebido.
+    public TreinoDTO() {
+    }
 
     // Construtor usado para criar o DTO com os dados do treino.
-    public TreinoDTO(Long id, String nome,
-                     String descricao, Integer duracaoMinutos) {
+    public TreinoDTO(Long id, String exercicio, Integer series,
+                     Integer repeticoes, String grupoMuscular,
+                     boolean feitohoje) {
         this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.duracaoMinutos = duracaoMinutos;
+        this.exercicio = exercicio;
+        this.series = series;
+        this.repeticoes = repeticoes;
+        this.grupoMuscular = grupoMuscular;
+        this.feitohoje = feitohoje;
     }
 
     // Retorna o ID do treino.
@@ -49,19 +64,29 @@ public class TreinoDTO {
         return id;
     }
 
-    // Retorna o nome do treino.
-    public String getNome() {
-        return nome;
+    // Retorna o nome do exercício.
+    public String getExercicio() {
+        return exercicio;
     }
 
-    // Retorna a descrição do treino.
-    public String getDescricao() {
-        return descricao;
+    // Retorna a quantidade de séries.
+    public Integer getSeries() {
+        return series;
     }
 
-    // Retorna a duração do treino.
-    public Integer getDuracaoMinutos() {
-        return duracaoMinutos;
+    // Retorna a quantidade de repetições.
+    public Integer getRepeticoes() {
+        return repeticoes;
+    }
+
+    // Retorna o grupo muscular.
+    public String getGrupoMuscular() {
+        return grupoMuscular;
+    }
+
+    // Retorna se foi feito hoje.
+    public boolean isFeitohoje() {
+        return feitohoje;
     }
 
     // Define o ID do treino.
@@ -69,18 +94,28 @@ public class TreinoDTO {
         this.id = id;
     }
 
-    // Define o nome do treino.
-    public void setNome(String nome) {
-        this.nome = nome;
+    // Define o nome do exercício.
+    public void setExercicio(String exercicio) {
+        this.exercicio = exercicio;
     }
 
-    // Define a descrição do treino.
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    // Define a quantidade de séries.
+    public void setSeries(Integer series) {
+        this.series = series;
     }
 
-    // Define a duração do treino.
-    public void setDuracaoMinutos(Integer duracaoMinutos) {
-        this.duracaoMinutos = duracaoMinutos;
+    // Define a quantidade de repetições.
+    public void setRepeticoes(Integer repeticoes) {
+        this.repeticoes = repeticoes;
+    }
+
+    // Define o grupo muscular.
+    public void setGrupoMuscular(String grupoMuscular) {
+        this.grupoMuscular = grupoMuscular;
+    }
+
+    // Define se foi feito hoje.
+    public void setFeitohoje(boolean feitohoje) {
+        this.feitohoje = feitohoje;
     }
 }

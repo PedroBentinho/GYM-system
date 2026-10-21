@@ -80,6 +80,14 @@ public class Treino {
                 this.repeticoes = repeticoes;
         }
 
+                public boolean isFeitohoje() {
+                return feitohoje;
+        }
+
+        public void setGrupoMuscular(String grupoMuscular) {
+                this.grupoMuscular = grupoMuscular;
+        }
+
         @Override
         public String toString(){
                    return "[ id: " + id + " | Exercicio: " + Exercicio + " | Series: " + Series + " | repeticoes: " + repeticoes + " ]";
