@@ -60,6 +60,17 @@ public class TreinoService {
                 });
     }
 
+      // Marca o treino como feito hoje.
+    public Optional<TreinoDTO> concluirTreino(Long id) {
+        return treinoRepository.findById(id)
+                .map(treino -> {
+                    treino.setfeitohoje(true);
+                    return TreinoMapper.toDTO(
+                            treinoRepository.save(treino)
+                    );
+                });
+    }
+
     // Verifica se o treino existe e o exclui.
     public boolean deleteTreino(Long id) {
         if (!treinoRepository.existsById(id)) {
